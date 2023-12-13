@@ -27,8 +27,8 @@ export const Heading = () => {
       {isAuthenticated && !isLoading && (
         <Button asChild>
           <Link href="/documents">
-          Enter AK Notion
-          <ArrowRight className="h-4 w-4 ml-2" />
+            Enter AK Notion
+            <ArrowRight className="h-4 w-4 ml-2" />
           </Link>
         </Button>
       )}
@@ -36,7 +36,7 @@ export const Heading = () => {
         <SignInButton mode="modal">
           <Button>
             Get AK Notion
-            <ArrowRight className="h-4 w-4 ml-2"/>
+            <ArrowRight className="h-4 w-4 ml-2" />
           </Button>
         </SignInButton>
       )}
