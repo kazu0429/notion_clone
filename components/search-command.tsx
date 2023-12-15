@@ -67,12 +67,11 @@ export const SearchComannd = () => {
                             value={`${document._id}-${document.title}`}
                             title={document.title}
                             onSelect={() => onSelect(document._id)}
-                            className="flex"
                         >
                             {document.icon ? (
-                                <p className="mr-2 text-[18px]">
+                                <div className="mr-2 text-[18px]">
                                     {document.icon}
-                                </p>
+                                </div>
                             ) : (
                                 <File className="mr-2 h-4 w-4" />
                             )}
