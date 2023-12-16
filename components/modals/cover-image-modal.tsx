@@ -16,8 +16,8 @@ import { Id } from "@/convex/_generated/dataModel";
 
 export const CoverImageModal = () => {
     const params = useParams();
-    const [ file, setFile ] = useState<File>();
-    const [ isSubmitting, setIsSubmitting ] = useState(false);
+    const [file, setFile] = useState<File>();
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const coverImage = useCoverImage();
     const { edgestore } = useEdgeStore();
     const updata = useMutation(api.documents.update);
@@ -28,23 +28,28 @@ export const CoverImageModal = () => {
         coverImage.onClose();
     }
 
-    const onChange = async (file?: File) =>  {
-        if(file){
+    const onChange = async (file?: File) => {
+        if (file) {
             setIsSubmitting(true);
             setFile(file);
 
+
             const res = await edgestore.publicFiles.upload({
-                file
-            });
+                file,
+                options: {
+                    replaceTargetUrl: coverImage.url
+                }
+            })
+
             await updata({
-                id : params.documentId as Id<"documents">,
+                id: params.documentId as Id<"documents">,
                 coverImage: res.url
             });
 
             onClose();
         }
     }
-    
+
     return (
         <Dialog open={coverImage.isOpen} onOpenChange={coverImage.onClose}>
             <DialogContent>
@@ -53,11 +58,11 @@ export const CoverImageModal = () => {
                         Cover Image
                     </h2>
                 </DialogHeader>
-                <SingleImageDropzone 
-                 className="w-full outline-none"
-                 disabled={isSubmitting}
-                 value={file}
-                 onChange={onChange}
+                <SingleImageDropzone
+                    className="w-full outline-none"
+                    disabled={isSubmitting}
+                    value={file}
+                    onChange={onChange}
                 />
             </DialogContent>
         </Dialog>
