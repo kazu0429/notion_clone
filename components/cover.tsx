@@ -20,7 +20,7 @@ interface CoverImageProps {
 export const Cover = ({url, preview}:CoverImageProps) => {
     const params = useParams();
     const coverImage = useCoverImage();
-    const { edgestore}  = useEdgeStore();
+    const { edgestore }  = useEdgeStore();
     const removeCoverImage = useMutation(api.documents.removeCoverImage);
 
     const onRemove = async () => {
